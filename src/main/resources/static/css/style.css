@@ -1,0 +1,70 @@
+body {
+}
+
+header {
+}
+
+.search-module {
+    border-radius: 0;
+}
+
+.card{
+    border-radius: 0;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.btn-success {
+    background-color: #97ff94;
+    color:#00174a;
+}
+
+.btn-warning {
+    background-color: #00174a;
+    border: #97ff94;
+    color:#97ff94;
+}
+.filter-box {
+    background-color: white;
+}
+
+.nav-link {
+    font-family: "Helvetica Neue Condensed", sans-serif;
+    font-weight: bold;
+}
+
+.form-check-label {
+    font-family: "Helvetica Neue Condensed", sans-serif;
+}
+
+.product-list-header {
+    padding-right: 7px;
+}
+
+html{
+    margin: 0;
+    padding : 0;
+}
+
+.main-containers {
+    padding-right: 130px;
+    padding-left: 130px;
+}
+
+.form-check-input {
+    margin-right: 15px;
+}
+
+.form-control {
+    margin-left: 11px;
+}
+
+.edit-button {
+    padding-left: 4px;
+}
+
+.card-body, .login-wrap {
+    font-family: "Helvetica Neue Condensed", sans-serif;
+}

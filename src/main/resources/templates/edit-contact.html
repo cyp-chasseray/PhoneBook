@@ -1,0 +1,41 @@
+<th:block th:include="./head.html"></th:block>
+<th:block th:include="./nav.html"></th:block>
+
+<div class="main-containers row mb-3">
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h4>Edit contact</h4>
+        <form method="post" th:action="@{/edit-contact}">
+          <div class="mb-3">
+
+              <label for="contactId" class="form-label">Id</label>
+              <input type="text" class="form-control" id="contactId" name="id" th:value="${contact.id}" readonly>
+
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" th:value="${contact.firstName}">
+
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" th:value="${contact.lastName}">
+
+              <label for="adress" class="form-label">Adress</label>
+              <input type="text" class="form-control" id="adress" name="adress" th:value="${contact.adress}">
+
+              <label for="zipCode" class="form-label">ZipCode</label>
+              <input type="text" class="form-control" id="zipCode" name="zipCode" th:value="${contact.zipCode}">
+
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" name="city" th:value="${contact.city}">
+
+              <label for="country" class="form-label">Country</label>
+              <input type="text" class="form-control" id="country" name="country" th:value="${contact.country}">
+
+            </div>
+          <button type="submit" class="btn btn-warning">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<th:block th:include="./footer.html"></th:block>

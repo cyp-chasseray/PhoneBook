@@ -3,6 +3,7 @@ package com.example.phonebook.service;
 import com.example.phonebook.entity.Contact;
 import com.example.phonebook.entity.User;
 import com.example.phonebook.repository.ContactRepository;
+import com.example.phonebook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import java.util.Optional;
 public class ContactService {
     @Autowired
     private ContactRepository contactRepository;
+    @Autowired
+    private UserRepository userRepository;
     public List<Contact> fetchAll() {
         return contactRepository.findAll();
     }
@@ -45,6 +48,14 @@ public class ContactService {
         }
     }
 
-
+    public Contact assignUserToContact(int contactId, User user) {
+        Optional<Contact> contactOptional = contactRepository.findById(contactId);
+        if (contactOptional.isPresent()) {
+            Contact contact = contactOptional.get();
+            contact.setUser(user);
+            return contactRepository.save(contact);
+        }
+        throw new IllegalArgumentException("Contact not found with id: " + contactId);
+    }
 }
 
