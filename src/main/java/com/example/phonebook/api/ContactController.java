@@ -23,6 +23,7 @@ public class ContactController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Contact> getContactById(@PathVariable int id) {
+
         Optional<Contact> contact = contactService.fetchById(id);
         if (contact.isPresent()) {
             return ResponseEntity.ok(contact.get());
@@ -33,16 +34,19 @@ public class ContactController {
 
     @PostMapping
     public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
+
         Contact createdContact = contactService.create(contact);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdContact);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Contact> updateContact(@PathVariable int id, @RequestBody Contact contactToUpdate) {
+
         contactToUpdate.setId(id);
         try {
             Contact updatedContact = contactService.update(contactToUpdate);
             return ResponseEntity.ok(updatedContact);
+
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
@@ -50,9 +54,11 @@ public class ContactController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteContact(@PathVariable int id) {
+
         try {
             contactService.deleteById(id);
             return ResponseEntity.noContent().build();
+
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }

@@ -11,25 +11,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 @Controller
-public class EditContactWebController {
+public class EditProfileWebController {
     @Autowired
-    private ContactService contactService;
-    @Autowired
-    private UserService userservice;
-    @GetMapping("/edit-contact/{id}")
-    public String editContact(@PathVariable("id") int id, Model model) {
+    private UserService userService;
 
-        Contact contact = contactService.fetchById(id).orElseThrow(() -> new RuntimeException("Contact not found"));
-        model.addAttribute("contact", contact);
-        return "edit-contact";
+    @GetMapping("/edit-profile/{id}")
+    public String editProfile(@PathVariable("id") int id, Model model) {
+
+        User user = userService.fetchById(id).orElseThrow(() -> new RuntimeException("Contact not found"));
+        model.addAttribute("user", user);
+        return "edit-profile";
     }
 
-    @PostMapping("/edit-contact")
-    public String updateContact(@ModelAttribute("contact") Contact updatedContact) {
+    @PostMapping("/edit-profile")
+    public String updateProfile(@ModelAttribute("user") User updatedUser) {
 
-        contactService.update(updatedContact);
+        userService.update(updatedUser);
         return "redirect:/contacts/2";
     }
 }

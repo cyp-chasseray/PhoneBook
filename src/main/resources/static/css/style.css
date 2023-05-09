@@ -1,4 +1,6 @@
 body {
+
+    background-color: #96ad7b;
 }
 
 header {
@@ -17,15 +19,23 @@ header {
 }
 
 .btn-success {
-    background-color: #97ff94;
-    color:#00174a;
+    background-color: #274c00;
+    color:white;
+    border-radius: 0;
 }
 
 .btn-warning {
-    background-color: #00174a;
-    border: #97ff94;
-    color:#97ff94;
+    background-color: #274c00;
+    border: #274c00;
+    color:white;
 }
+
+.dropdown-menu {
+    border-radius: 0;
+    padding: 4px;
+}
+
+
 .filter-box {
     background-color: white;
 }

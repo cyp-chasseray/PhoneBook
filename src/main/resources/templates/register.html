@@ -1,0 +1,40 @@
+<th:block th:include="./head.html"></th:block>
+<th:block th:include="./navlogin.html"></th:block>
+
+<div class="row justify-content-center mt-5">
+  <div class="col-md-7 col-lg-5 mt-5">
+    <div class="wrap" style="background-color: white; border-radius: 25px">
+      <div class="login-square login-wrap p-4 p-md-5">
+        <div class="text-center">
+          <h3 class="mb-4">Register</h3>
+        </div>
+        <form th:action="@{/register}" method="post">
+          <div class="form-floating mt-5 mb-5">
+            <input id="email" type="email" name="email" class="form-control" placeholder="name@example.com" required>
+            <label for="email">Email</label>
+          </div>
+          <div class="form-floating mt-5 mb-5">
+            <input id="password" type="password" name ="password" class="form-control" placeholder="password" required>
+            <label class="form-control-placeholder" for="password">Password</label>
+          </div>
+          <div class="form-floating mt-5 mb-5">
+            <input id="firstName" type="text" name ="firstName" class="form-control" placeholder="First Name" required>
+            <label class="form-control-placeholder" for="firstName">First Name</label>
+          </div>
+          <div class="form-floating mt-5 mb-5">
+            <input id="lastName" type="text" name ="lastName" class="form-control" placeholder="Last Name" required>
+            <label class="form-control-placeholder" for="lastName">Last Name</label>
+          </div>
+          <div class="form-floating mt-5 mb-5">
+            <input id="pictureUrl" type="text" name ="pictureUrl" class="form-control" placeholder="Picture Url" required>
+            <label class="form-control-placeholder" for="pictureUrl">Picture Url</label>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="form-control btn btn-warning submit px-3">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:include="./footer.html"></th:block>

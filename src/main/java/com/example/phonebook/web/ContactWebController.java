@@ -23,13 +23,17 @@ public class ContactWebController {
 
     @GetMapping("/contacts/{userId}")
     public String getContactList(@PathVariable int userId, Model model) {
+
         List<Contact> contacts = userService.getUserContactList(userId);
         model.addAttribute("contacts", contacts);
         return "contact-list";
     }
 
     @GetMapping("/contacts/{userId}/search")
-    public String searchContacts(@PathVariable int userId, @RequestParam("keyword") String keyword, Model model) {
+    public String searchContacts(@PathVariable int userId,
+                                 @RequestParam("keyword") String keyword,
+                                 Model model) {
+
         List<Contact> contacts = userService.searchContactsByKeyword(userId, keyword);
         model.addAttribute("contacts", contacts);
         return "contact-list";
@@ -37,6 +41,7 @@ public class ContactWebController {
 
     @GetMapping("/delete/{contactId}")
     public String deleteContact(@PathVariable int contactId) {
+
         contactService.deleteById(contactId);
         return "redirect:/contacts/2";
     }

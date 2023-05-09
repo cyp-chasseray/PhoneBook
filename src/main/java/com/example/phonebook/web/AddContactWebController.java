@@ -28,9 +28,11 @@ public class AddContactWebController {
 
     @PostMapping("/add-contact")
     public String addContact(@ModelAttribute("contact") Contact newContact) {
+
         Contact addedContact = contactService.create(newContact);
         int addedContactId = addedContact.getId();
         Optional<User> userOptional = userService.fetchById(2);
+
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             contactService.assignUserToContact(addedContactId, user);

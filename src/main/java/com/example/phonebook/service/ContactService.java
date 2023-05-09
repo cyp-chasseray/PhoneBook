@@ -15,18 +15,23 @@ public class ContactService {
     private ContactRepository contactRepository;
     @Autowired
     private UserRepository userRepository;
+
     public List<Contact> fetchAll() {
         return contactRepository.findAll();
     }
+
     public Optional<Contact> fetchById(int id){
         return contactRepository.findById(id);
     }
+
     public Contact create(Contact contact){
         return contactRepository.save(contact);
     }
 
     public Contact update(Contact contactToUpdate) {
+
         Optional<Contact> originalContact = contactRepository.findById(contactToUpdate.getId());
+
         if (originalContact.isPresent()) {
             Contact existingContact = originalContact.get();
             existingContact.setFirstName(contactToUpdate.getFirstName());
@@ -37,23 +42,28 @@ public class ContactService {
             existingContact.setCountry(contactToUpdate.getCountry());
             return contactRepository.save(existingContact);
         }
+
         throw new IllegalArgumentException("User not found with id: " + contactToUpdate.getId());
     }
 
     public void deleteById(int id) {
+
         if (contactRepository.existsById(id)) {
             contactRepository.deleteById(id);
+
         } else {
             throw new IllegalArgumentException("Contact not found with id: " + id);
         }
     }
 
-    public Contact assignUserToContact(int contactId, User user) {
+    public void assignUserToContact(int contactId, User user) {
+
         Optional<Contact> contactOptional = contactRepository.findById(contactId);
+
         if (contactOptional.isPresent()) {
             Contact contact = contactOptional.get();
             contact.setUser(user);
-            return contactRepository.save(contact);
+            contactRepository.save(contact);
         }
         throw new IllegalArgumentException("Contact not found with id: " + contactId);
     }

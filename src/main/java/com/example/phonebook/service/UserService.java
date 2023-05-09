@@ -23,8 +23,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public Optional<User> findByEmail(String email) {
+
+        return userRepository.findByEmail(email);
+    }
+
     public User update(User userToUpdate) {
+
         Optional<User> originalUser = userRepository.findById(userToUpdate.getId());
+
         if (originalUser.isPresent()) {
             User existingUser = originalUser.get();
             existingUser.setFirstname(userToUpdate.getFirstname());
@@ -38,7 +45,9 @@ public class UserService {
     }
 
     public List<Contact> getUserContactList(int userId) {
+
         Optional<User> userOptional = userRepository.findById(userId);
+
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             return user.getContactList();
@@ -47,7 +56,9 @@ public class UserService {
     }
 
     public List<Contact> searchContactsByKeyword(int userId, String keyword) {
+
         Optional<User> userOptional = userRepository.findById(userId);
+
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             List<Contact> listToFilter = user.getContactList();
@@ -76,15 +87,4 @@ public class UserService {
         throw new IllegalArgumentException("User not found with id: " + userId);
     }
 
-//    public User addContactToUser(int userId, Contact contact) {
-//        Optional<User> userOptional = userRepository.findById(userId);
-//        if (userOptional.isPresent()) {
-//            User user = userOptional.get();
-//            List<Contact> contacts = user.getContactList();
-//            contacts.add(contact);
-//            user.setContactList(contacts);
-//            return userRepository.save(user);
-//        }
-//        throw new IllegalArgumentException("User not found with id: " + userId);
-//    }
 }

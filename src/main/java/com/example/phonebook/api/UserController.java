@@ -17,6 +17,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable int id) {
+
         Optional<User> user = userService.fetchById(id);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
@@ -27,16 +28,19 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
+
         User createdUser = userService.create(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User userToUpdate) {
+
         userToUpdate.setId(id);
         try {
             User updatedUser = userService.update(userToUpdate);
             return ResponseEntity.ok(updatedUser);
+
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
